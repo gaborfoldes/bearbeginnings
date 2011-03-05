@@ -16,7 +16,7 @@
 	/*
 	 * Print the <title> tag based on what is being viewed.
 	 */
-	global $page, $paged, $post;
+	global $page, $paged, $post, $current_user;
 
 	wp_title( '|', true, 'right' );
 
@@ -61,7 +61,7 @@
 				<?php $heading_tag = ( is_home() || is_front_page() ) ? 'h1' : 'div'; ?>
 				<<?php echo $heading_tag; ?> id="site-title">
 					<span>
-						<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php echo strtr(get_bloginfo( 'name' ), array("Beginnings" => "<span style='font-weight: bold; color: #a29986'>Beginnings</span><span style='font-weight: normal; font-size: 10px; color: #00588e'>beta</span>")); ?></a>
+						<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php echo strtr(get_bloginfo( 'name' ), array("Base" => "<span style='font-weight: bold; color: #a29986'>Base</span><span style='font-weight: normal; font-size: 10px; color: #00588e'> beta</span>")); ?></a>
 					</span>
 				</<?php echo $heading_tag; ?>>
 
@@ -76,7 +76,9 @@
 					  if (!is_user_logged_in()) {
 				      wp_register();
 				    } else {
-					    echo '<li><a href="'.admin_url('profile.php').'">My profile</a></li>';
+#					    get_currentuserinfo();
+#					    print_r($current_user);
+					    echo '<li>Logged in as <strong>'.$current_user->display_name.'</strong></li><li><a href="'.admin_url('profile.php').'">My profile</a></li>';
 					  }
 ?>
 			      <li><?php wp_loginout(get_permalink( $post->ID )); ?></li>

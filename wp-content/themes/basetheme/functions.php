@@ -508,12 +508,13 @@ function shortcode_list_pages( $atts, $content, $tag ) {
 	global $post;
 	
 	$args = array(
-	    'orderby' => 'post_title',
+	    'orderby' => 'title',
 			'order' => 'ASC',
 	    'post_parent' => 0,
 	    'post_type' => 'page',
 	    'post_status' => 'publish',
-			'class'       => $tag
+			'class'       => $tag,
+			'numberposts' => -1
 	);
   $args = shortcode_atts( $args, $atts );
 	
@@ -536,7 +537,7 @@ add_shortcode( 'list-pages', 'shortcode_list_pages' );
 
 function create_custom_post_types() {
 
-$labels = array(
+$startup_labels = array(
     'name' => _x('Startups', 'post type general name'),
     'singular_name' => _x('Startup', 'post type singular name'),
     'add_new' => _x('Add New', 'startup'),
@@ -555,7 +556,7 @@ $labels = array(
 register_post_type('startup',
     array(
         'label'           => __('Startups'),
-			  'labels'          => $labels,
+			  'labels'          => $startup_labels,
         'public'          => true,
         'show_ui'         => true,
         'query_var'       => 'startup',
@@ -598,10 +599,25 @@ register_taxonomy('company-funding', 'company', array(
     )
 );*/
 
+$person_labels = array(
+    'name' => _x('People', 'post type general name'),
+    'singular_name' => _x('Person', 'post type singular name'),
+    'add_new' => _x('Add New', 'person'),
+    'add_new_item' => __('Add New Person'),
+    'edit_item' => __('Edit Person'),
+    'new_item' => __('New Person'),
+    'view_item' => __('View Person'),
+    'search_items' => __('Search People'),
+    'not_found' =>  __('No people found'),
+    'not_found_in_trash' => __('No people found in Trash'), 
+    'parent_item_colon' => '',
+    'menu_name' => 'People'
+);
 
 register_post_type('person',
     array(
         'label'           => __('People'),
+				'labels'					=> $person_labels,
         'public'          => true,
         'show_ui'         => true,
         'query_var'       => 'person',
@@ -616,9 +632,26 @@ register_post_type('person',
 );
 
 
+$group_labels = array(
+    'name' => _x('Groups', 'post type general name'),
+    'singular_name' => _x('Group', 'post type singular name'),
+    'add_new' => _x('Add New', 'group'),
+    'add_new_item' => __('Add New Group'),
+    'edit_item' => __('Edit Group'),
+    'new_item' => __('New Group'),
+    'view_item' => __('View Group'),
+    'search_items' => __('Search Groups'),
+    'not_found' =>  __('No groups found'),
+    'not_found_in_trash' => __('No groups found in Trash'), 
+    'parent_item_colon' => '',
+    'menu_name' => 'Groups'
+);
+
+
 register_post_type('group',
     array(
         'label'           => __('Groups'),
+				'labels'					=> $group_labels,
         'public'          => true,
         'show_ui'         => true,
         'query_var'       => 'group',
@@ -770,7 +803,9 @@ function widget_relatedPeople($args) {
 	  'suppress_filters' => false,
 	  'post_type' => 'person',
 	  'connected' => $post->ID,
-	  'numberposts' => 100
+	  'orderby' => 'title',
+		'order' => 'ASC',
+	  'numberposts' => 20
 	) );
 
   if ($people) {
@@ -809,7 +844,9 @@ function widget_relatedStartups($args) {
 	  'suppress_filters' => false,
 	  'post_type' => 'startup',
 	  'connected' => $post->ID,
-	  'numberposts' => 100
+	  'orderby' => 'title',
+		'order' => 'ASC',
+	  'numberposts' => 20
 	) );
 
   if ($startups) {
@@ -882,10 +919,10 @@ function widget_About($args) {
 
   extract($args);
 
-  echo $before_widget.$before_title.'What is bearBeginnings?'.$after_title;
+  echo $before_widget.$before_title.'What is berkeleyBase?'.$after_title;
 ?>
   <ul>
-     <li><strong>bearBeginnings</strong> is a database of startup initiatives as well as people and various groups involved in entrepreneurship in and around the university campus. It functions like a wiki so that anyone can edit the information.</li>
+     <li><strong>berkeleyBase</strong> is a database of startup initiatives as well as people and various groups involved in entrepreneurship in and around the university campus. It functions like a wiki so that anyone can edit the information.</li>
      <li>The site is exclusive to the UC Berkeley community.  You can either access it from the campus network or register using a 'berkeley.edu' email address.</li>
      <li>Help the Berkeley entrepreneur community by expanding the information on this site.</li>
   </ul>

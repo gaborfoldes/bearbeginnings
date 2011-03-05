@@ -1,0 +1,120 @@
+[general_fieldset]
+type = fieldset_open
+legend = General Information
+ 
+[general_description]
+type = textarea
+label = Description
+blank = true
+output = true
+
+[general_website]
+type = text
+label = Website
+size = 50
+blank = true
+output = true
+
+[general_blog]
+type = text
+label = Blog
+blank = true
+output = true
+
+[general_twitter]
+type = text
+label = Twitter
+blank = true
+output = true
+
+[general_phone]
+type = text
+label = Phone
+blank = true
+output = true
+
+[general_email]
+type = text
+label = Email
+blank = true
+output = true
+
+[general_founding]
+type = text
+date = true
+label = Founding Date
+blank = true
+output = true
+  
+[general_fieldset]
+type = fieldset_close
+
+-----
+
+[Plan]
+type = text
+size = 35
+label = Where are you going to go?
+
+[Plan]
+type = textfield
+size = 35
+hideKey = true
+
+[Favorite Fruits]
+type = checkbox
+value = apple # orange # banana # grape
+default = orange # grape
+
+[Miles Walked]
+type = radio
+value = 0-9 # 10-19 # 20+
+default = 10-19
+clearButton = true
+
+[Temper Level]
+type = select
+value = High # Medium # Low
+default = Low
+
+[Hidden Thought]
+type = textarea
+rows = 4
+cols = 40
+tinyMCE = true
+htmlEditor = true
+mediaButton = true
+
+[File Upload]
+type = file
+
+[cft_group_fieldset]
+type = fieldset_open
+legend = Group #1
+multiple = true
+multipleButton = true
+ 
+[cft_group_title]
+type = text
+label = Title
+blank = true
+ 
+[cft_group_description]
+type = textarea
+label = Description
+blank = true
+ 
+[cft_group_size]
+type = select
+label = Size
+value = Small # Medium # Large
+default = Right
+blank = true
+ 
+[cft_group_order]
+type = text
+label = Order
+blank = true
+ 
+[cft_group_fieldset]
+type = fieldset_close

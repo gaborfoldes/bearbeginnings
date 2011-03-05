@@ -1,0 +1,20 @@
+WordPress Wiki That Doesn't Suck
+** CHANGELOG **
+
+** 11-08-2010 **
+Version 0.6.1
+================
+* updated readme.txt
+
+** 11-05-2010 **
+Version 0.6
+================
+* added `with_front` qualifier to the `rewrite` option to use it's own permalink structure.
+
+** 11-05-2010 **
+Version 0.5
+===============
+first public release
+to do:
+ * add an options page to change the slug (anyone wanna contribute to that?)
+ * anything else?

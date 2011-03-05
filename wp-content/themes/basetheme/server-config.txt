@@ -1,0 +1,15 @@
+#!/bin/sh
+yum -y install httpd
+yum -y install mysql-server mysql 
+yum -y install php php-mysql
+mount /dev/sdf /mnt
+
+sed -i 's/\/var/\/mnt\/var/g' /etc/httpd/conf/httpd.conf
+
+rm -rf /var/lib/mysql
+ln -s /mnt/var/lib/mysql /var/lib/mysql
+rm -f /var/log/mysqld.log
+ln -s /mnt/var/log/mysqld.log /var/log/mysqld.log
+
+service mysqld start
+service httpd start

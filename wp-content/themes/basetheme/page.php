@@ -30,7 +30,7 @@ get_header(); ?>
 										</h2>
 									<?php } else { ?>
 										<h1 class="entry-title"><?php the_title(); ?>
-											<?php edit_post_link( __( 'edit', 'basetheme' ), '<span class="edit-link">', '</span>' ); ?>
+											<?php if ($post->post_title != 'Comments') edit_post_link( __( 'edit', 'basetheme' ), '<span class="edit-link">', '</span>' ); ?>
 										</h1>
 									<?php } ?>
 

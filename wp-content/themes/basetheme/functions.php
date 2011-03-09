@@ -919,10 +919,10 @@ function widget_About($args) {
 
   extract($args);
 
-  echo $before_widget.$before_title.'What is berkeleyBase?'.$after_title;
+  echo $before_widget.$before_title.'What is bearBeginnings?'.$after_title;
 ?>
   <ul>
-     <li><strong>berkeleyBase</strong> is a database of startup initiatives as well as people and various groups involved in entrepreneurship in and around the university campus. It functions like a wiki so that anyone can edit the information.</li>
+     <li><strong>bearBeginnings</strong> is a database of startup initiatives as well as people and various groups involved in entrepreneurship in and around the university campus. It functions like a wiki so that anyone can edit the information.</li>
      <li>The site is exclusive to the UC Berkeley community.  You can either access it from the campus network or register using a 'berkeley.edu' email address.</li>
      <li>Help the Berkeley entrepreneur community by expanding the information on this site.</li>
   </ul>

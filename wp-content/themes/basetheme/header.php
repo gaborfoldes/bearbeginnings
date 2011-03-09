@@ -61,7 +61,7 @@
 				<?php $heading_tag = ( is_home() || is_front_page() ) ? 'h1' : 'div'; ?>
 				<<?php echo $heading_tag; ?> id="site-title">
 					<span>
-						<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php echo strtr(get_bloginfo( 'name' ), array("Base" => "<span style='font-weight: bold; color: #a29986'>Base</span><span style='font-weight: normal; font-size: 10px; color: #00588e'> beta</span>")); ?></a>
+						<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php echo strtr(get_bloginfo( 'name' ), array("Beginnings" => "<span style='font-weight: bold; color: #a29986'>Beginnings</span><span style='font-weight: normal; font-size: 10px; color: #00588e'> beta</span>")); ?></a>
 					</span>
 				</<?php echo $heading_tag; ?>>
 

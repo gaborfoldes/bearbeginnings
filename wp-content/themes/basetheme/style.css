@@ -694,6 +694,10 @@ div.menu li {
 	color: #000;
 	font-size: 15px;
 }
+#content .entry-title-list img {
+	float: right;
+	width: 20px;
+}
 #content .entry-title-list span {
 	background: #f0f5f4;
 	border: 2px solid #d4a000;

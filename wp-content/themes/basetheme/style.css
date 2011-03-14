@@ -708,6 +708,24 @@ div.menu li {
 	vertical-align: 2px;
 }
 
+.looking-for {
+	margin: 25px 0 15px 0;
+	background: #f7f9f9;
+	border: 1px solid #d4a000;
+	padding: 4px;
+	margin-right: 7px;
+	color: #000;
+	font-size: 12px;
+	vertical-align: 2px;
+	width: auto;
+}
+.looking-for span {
+	font-size: 12px;
+	font-weight: bold;
+	display: block;
+	padding-bottom: 4px;
+}
+
 /*.entry-title a:link,
 .entry-title a:visited {
 	text-decoration: none;
@@ -779,6 +797,14 @@ div.menu li {
 	text-align: left;
 	width: 33%;
 }
+/*.entry-content h3 {
+	border-top: 3px solid #f0f5f4;
+	padding-top: 10px;
+	margin-bottom: 5px !important;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #d4a000 !important;
+} */
 .page-link {
 	color: #000;
 	font-weight: bold;

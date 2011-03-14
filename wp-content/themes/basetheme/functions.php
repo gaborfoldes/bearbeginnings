@@ -565,7 +565,6 @@ register_post_type('startup',
         'supports'        => array(
             'title',
 						'editor',
-#            'excerpt',
             'thumbnail',
 						'custom-fields',
 						'revisions'
@@ -626,7 +625,9 @@ register_post_type('person',
         'supports'        => array(
             'title',
             'thumbnail',
-            'editor'
+            'editor',
+						'custom-fields',
+						'revisions'
             ),
         )
 );
@@ -661,7 +662,9 @@ register_post_type('group',
             'title',
             'thumbnail',
 						'page-attributes',
-            'editor'
+            'editor',
+						'custom-fields',
+						'revisions'
             ),
         )
 );
@@ -785,6 +788,91 @@ function widget_groupDetails($args) {
 ?>
 
 	</table>
+
+<?php
+  echo $after_widget;
+
+}
+
+function widget_personDetails($args) {
+
+  global $post;
+
+  if ($post->post_type != 'person' || !is_single()) return;
+
+  extract($args);
+	echo $before_widget.$before_title.$widget_name;
+	edit_post_link( __( 'edit', 'basetheme' ), '<span class="edit-link">', '</span>' );
+	echo $after_title;
+
+  $phone = field_get_meta('phone');
+  $email = field_get_meta('email');
+  $website = field_get_meta('website');
+  $blogsite = field_get_meta('blog');
+  $twitter = field_get_meta('twitter');
+  $linkedin = field_get_meta('linkedin');
+  $facebook = field_get_meta('facebook');
+
+?>
+  <table>
+<?php
+?>
+<?php if ($phone) { ?>		<tr><td>Phone</td><td><?php echo $phone; ?></td></tr> <?php } ?>
+<?php if ($email) { ?>		<tr><td>Email</td><td><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?><a></td></tr> <?php } ?>
+<?php if ($website) { ?>  <tr><td>Website</td><td><a href="<?php echo (preg_match('^(https?)\:\/\/', $website) ? $website : 'http://'.$website); ?>"><?php echo $website; ?><a></td></tr> <?php } ?>
+<?php if ($blogsite) { ?> <tr><td>Blog</td><td><a href="<?php echo (preg_match('^(https?)\:\/\/', $blogsite) ? $blogsite : 'http://'.$blogsite); ?>"><?php echo $blogsite; ?><a></td></tr> <?php } ?>
+<?php if ($linkedin) { ?> <tr><td>LinkedIn</td><td><a href="http://www.linkedin.com/in/<?php echo $linkedin; ?>"><?php echo $linkedin; ?><a></td></tr> <?php } ?>
+<?php if ($twitter) { ?>  <tr><td>Twitter</td><td><a href="http://twitter.com/<?php echo $twitter; ?>">@<?php echo $twitter; ?><a></td></tr> <?php } ?>
+<?php if ($facebook) { ?> <tr><td>Facebook</td><td><a href="http://www.facebook.com/<?php echo $facebook; ?>"><?php echo $facebook; ?><a></td></tr> <?php } ?>
+	
+<?php
+
+  $other_fields = get_post_custom($post->ID);
+  foreach ( $other_fields as $key => $value ) {
+		if (substr($key,0,1) != "_") echo "<tr><td>".$key."</td><td>".$value[0]."</td></tr>";
+  }
+
+?>
+
+	</table>
+
+<?php
+  echo $after_widget;
+
+}
+
+function widget_degreeDetails($args) {
+
+  global $post;
+
+  if ($post->post_type != 'person' || !is_single()) return;
+
+  extract($args);
+	echo $before_widget.$before_title.$widget_name;
+	edit_post_link( __( 'edit', 'basetheme' ), '<span class="edit-link">', '</span>' );
+	echo $after_title;
+
+  for ($i=1; $i<=3; $i++) {
+    $inst[$i] = field_get_meta('institution' . (string)$i);
+    $degree_type[$i] = field_get_meta('degree-type' . (string)$i);
+    $subjects[$i] = field_get_meta('subjects' . (string)$i);
+    $grad_year[$i] = field_get_meta('graduation-year' . (string)$i);
+	}
+?>
+
+  <ul>
+
+<?php
+  for ($i=1; $i<=3; $i++) {
+?>	
+<?php if ($inst[$i]) { ?>		  <li><strong><?php echo $inst[$i]; ?><br> <?php } ?>
+<?php if ($degree_type[$i]) { ?>			<?php echo $degree_type[$i].' '.$grad_year[$i]; ?></strong><br> <?php } ?>
+<?php if ($subjects[$i]) { ?>			<?php echo $subjects[$i]; ?></li> <?php } ?>
+<?php
+  }
+?>
+
+	</ul>
 
 <?php
   echo $after_widget;
@@ -919,10 +1007,10 @@ function widget_About($args) {
 
   extract($args);
 
-  echo $before_widget.$before_title.'What is bearBeginnings?'.$after_title;
+  echo $before_widget.$before_title.'What is berkeleyBase?'.$after_title;
 ?>
   <ul>
-     <li><strong>bearBeginnings</strong> is a database of startup initiatives as well as people and various groups involved in entrepreneurship in and around the university campus. It functions like a wiki so that anyone can edit the information.</li>
+     <li><strong>berkeleyBase</strong> is a database of startup initiatives as well as people and various groups involved in entrepreneurship in and around the university campus. It functions like a wiki so that anyone can edit the information.</li>
      <li>The site is exclusive to the UC Berkeley community.  You can either access it from the campus network or register using a 'berkeley.edu' email address.</li>
      <li>Help the Berkeley entrepreneur community by expanding the information on this site.</li>
   </ul>
@@ -979,6 +1067,8 @@ function widget_Comments($args) {
  
 register_sidebar_widget(__('Startup Details'), 'widget_startupDetails');
 register_sidebar_widget(__('Group Details'), 'widget_groupDetails');
+register_sidebar_widget(__('Personal Details'), 'widget_personDetails');
+register_sidebar_widget(__('Degrees'), 'widget_degreeDetails');
 register_sidebar_widget(__('People'), 'widget_relatedPeople');
 register_sidebar_widget(__('Startups'), 'widget_relatedStartups');
 register_sidebar_widget(__('Groups'), 'widget_relatedGroups');

@@ -32,6 +32,13 @@ get_header(); ?>
 
 					<div class="entry-content">
 						<?php the_content(); ?>
+					  <?php $looking_for = field_get_meta('looking-for'); 
+							    if ($looking_for): ?>
+						  <div class="looking-for">
+							  <span><?php echo $post->post_title; ?> is currently looking for:</span>
+							  <?php print $looking_for; ?>
+							</div>
+						<?php endif; ?>
 						<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'basetheme' ), 'after' => '</div>' ) ); ?>
 					</div><!-- .entry-content -->
 
